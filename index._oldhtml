@@ -1,0 +1,10 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "[url="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"]http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd[/url]">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Amor Divino</title>
+</head>
+<frameset cols="1,*">
+   <frame src="http://drfritz.zage.com.br/" id="FAreaRestritaID" name="FAreaRestrita" frameborder="0" marginheight="0" marginwidth="0"></frame>
+   <frame src="/site/" id="FSiteID" name="FSite" frameborder="0" marginheight="0" marginwidth="0"></frame>
+</frameset>
+</html>

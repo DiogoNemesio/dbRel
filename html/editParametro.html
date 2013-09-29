@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+	%LOAD_HTML%
+</head>
+<body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+<div id="content">
+	%LOCALIZACAO%
+	<div class="box-header" data-original-title>
+    	<h4><i class="icon-edit"></i><span class="break"></span>&nbsp;Configurações do Sistema</h4>
+	</div>
+	<hr>
+	<div class="box-content">
+	    <form class="form-horizontal" id="zgFormID" action="#">
+	    <input type="hidden" name="id" value="%ID%">
+	    <fieldset>
+		    <div class="control-group">
+    			<label class="control-label" for="param1ID">%PARAM1%</label>
+    			<div class="controls">
+    				<div class="input-prepend">
+    					<span class="add-on"><i class=" icon-time"></i></span>
+    					<input id="param1ID" class="input-large" type="number" name="BS_TA_TIMEOUT" maxlength="4" min="300" max="9999" value="%BS_TA_TIMEOUT%" required autocomplete="off">
+    				</div>
+    			</div>
+    		</div>
+		    <div class="control-group">
+    			<label class="control-label" for="param2ID">%PARAM2%</label>
+    			<div class="controls">
+    				<div class="input-prepend">
+    					<span class="add-on"><i class="icon-info-sign"></i></span>
+    					<input id="param2ID" class="input-large" type="number" name="BS_TA_ITENS" maxlength="3" minlength="1" value="%BS_TA_ITENS%" required autocomplete="off">
+    				</div>
+    			</div>
+    		</div>
+		    <div class="control-group">
+    			<label class="control-label" for="param3ID">%PARAM3%</label>
+    			<div class="controls">
+    				<div class="input-prepend">
+    					<span class="add-on"><i class="icon-minus-sign"></i></span>
+    					<input id="param3ID" class="input-large" type="number" name="BS_TA_MINLENGTH" maxlength="3" minlength="1" value="%BS_TA_MINLENGTH%" required autocomplete="off">
+    				</div>
+    			</div>
+    		</div>
+    		 <div class="control-group">
+				<div class="controls">
+					<button type="submit" class="btn btn-primary" id="submit">Salvar</button>
+				</div>
+			</div>
+	    </fieldset>
+	    </form>
+	</div>
+</div>
+<div id="zgDivMsgID" class="modal hide fade"></div>
+<script>
+$('#zgFormID').submit(function() {
+	$.ajax({
+		type: 		"POST", 
+		url: 		"%DP%",
+		data:		$('#zgFormID').serialize(),		
+	}).done(function( data, textStatus, jqXHR) {
+		mostraMensagem(data);
+	}).fail(function( jqXHR, textStatus, errorThrown) {
+		mostraMensagem('1||'+errorThrown);
+	});
+	return false; 
+});
+
+$("input,textarea").jqBootstrapValidation({
+	preventSubmit: true
+});
+</script>
+
+</body>	
+</html>

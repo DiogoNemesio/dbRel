@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+	%LOAD_HTML%
+</head>
+<body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0" style="padding: 48px 0px 0px 0px;">
+<div class="zgInfoPaciente" style="max-width: 100%;">
+  <ul class="nav nav-tabs nav-stacked navbar-fixed-top">
+    <li class="zgInfoPaciente"><a class="zgFontePreta" href="#">Informações do Paciente: %INFO%</a></li>
+  </ul>
+</div>
+<div id='divMenuConsultaID' style="padding: 0px; margin: 0px 0; width: 130px;float: left;">
+	<div class="well" style="max-width: 126px; padding: 1px 0;">
+		<ul class="nav nav-list">
+			<li class="nav-header">Consulta</li>
+			<li id='conLiDefault' codPaciente='%COD_PACIENTE%' sysid='%ID%' codConsulta='' class="active"><a href="#">%CONSULTA_ATUAL%</a></li>
+			<li class="nav-header">Histórico</li>
+			%HISTORICO%
+		</ul>
+	</div>
+</div>
+<div id="divEditConsultaID" style="padding: 0px 0px 0px 0px; margin: 0px 0; float:left;">
+</div>
+<div id="zgDivMsgID" class="modal hide fade"></div>
+<div id="zgDivModalID" class="modal hide fade"></div>
+
+<script>
+$("li[id^='conLi']").click(function(){
+	var vUrl;
+	var vW;
+	vW 	= $(document).width() - $("#divMenuConsultaID").width();
+	$('.active').toggleClass('active');
+	//$('#'+this.id).toggleClass('active');
+	$(this).toggleClass('active');
+	vUrl = "mostraConsulta.php?codPaciente="+$(this).attr("codPaciente")+"&codConsulta="+$(this).attr("codConsulta")+'&id='+$(this).attr("sysid");
+	$('#divEditConsultaID').load(vUrl);
+	$('#divEditConsultaID').css({
+	    width: function () {
+	        return (vW - 5);
+	    }
+	})
+});
+
+$('#conLiDefault').click();
+</script>
+</body>	
+</html>
+      

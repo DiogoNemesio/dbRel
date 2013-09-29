@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head> 
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="%PKG_URL%/dhtmlx/dhtmlxDataView/codebase/dhtmlxdataview.css">
+	<script src="%PKG_URL%/dhtmlx/dhtmlxDataView/codebase/dhtmlxdataview.js"></script>
+	<script src="%PKG_URL%/dhtmlx/dhtmlxDataView/codebase/dhtmlxdataprocessor.js"></script>
+	
+	<style type="text/css" media="all">@import "%CSS_URL%/zgWeb.css";</style>
+	<style type="text/css" media="all">@import "%CSS_URL%/menu.css";</style>
+	<script src="%JS_URL%/zgWeb.js"></script>
+	
+	<script language="javascript">
+	function changeLocal (pCodMenu,pCodTipoUsuario) {
+		var	f			= document.getElementById('FMenuID');
+		f.codMenu.value	= pCodMenu;
+		f.codTipoUsuario.value	= pCodTipoUsuario;
+		f.submit();
+	}
+	function salvaMenu () {
+		var	f			= document.getElementById('FMenuID');
+		f.acao.value	= 'salvar';
+		f.submit();
+	}
+	function criarMenu () {
+		var	f			= document.getElementById('FMenuID');
+		f.acao.value	= 'criar';
+		f.submit();
+	}
+	function habilitaLink () {
+		var	f			= document.getElementById('FMenuID');
+		if (f.aCodTipo.value == 'L') {
+			f.aLink.disabled	= false;
+		}else{
+			f.aLink.disabled	= true;
+			f.aLink.value		= '';
+		}
+	}
+	</script>
+</head>
+<body>
+<form id="FMenuID" method="POST" action="%FORM_ACTION%">
+<input type="hidden" name="codMenu" value="%COD_MENU%">
+<input type="hidden" name="codMenuDe">
+<input type="hidden" name="codMenuPara">
+<input type="hidden" name="acao">
+<input type="hidden" name="codMenuDel">
+<table class="MCTable">
+	<tr><td align="center" class="MCTitulo">Cadastro de Menus</td></tr>
+</table>
+<table class="MCTable">
+	<tr>
+		<td align="left" width="20%" class="MCTexto">Selecione o tipo de Usuário:</td>
+		<td align="left" class="MCTexto"><select class="MCObject" name="codTipoUsuario" onchange="document.getElementById('FMenuID').submit();">%SEL_TIPO_USUARIO%</select></td>
+	<tr>
+</table>
+<br>
+<table class="MCTable">
+	<tr><td align="Left" class="MCTexto">Localização: %LOCALIZACAO%</td></tr>
+</table>
+<br>
+<table class="MCTable %HIDDEN%">
+	<tr>
+		<td align="Left" class="MCTexto">Menu:</td>
+		<td align="Left"><input type="text" class="MCObject" name="sMenu" size="20" maxlength="20" value="%SMENU%"></td>
+		<td align="Left" class="MCTexto">Descrição:</td>
+		<td align="Left"><input type="text" class="MCObject" name="sDescricao" size="26" maxlength="40" value="%SDESCRICAO%"></td>
+		<td align="Left" class="MCTexto">Ícone:</td>
+		<td align="Left"><input type="text" class="MCObject" name="sIcone" size="26" maxlength="100" value="%SICONE%"></td>
+		<td align="Left" class="MCTexto %HIDDEN_LINK%">Link:</td>
+		<td align="Left" class="%HIDDEN_LINK%"><input type="text" class="MCObject" name="sLink" size="26" maxlength="100" value="%SLINK%"></td>
+		<td align="Left"><input type="button" class="MCObject" value="Salvar" onclick="return(salvaMenu());"></td>
+	</tr>
+</table>
+<table class="MCTable">
+	<tr class="MCTableImpar"><td align="Left" class="MCTexto"><b>&nbsp;Menus que já estão disponíveis:<b></td></tr>
+</table>
+<div id="dataView1" style="width:100%;height:68px;border: #000000 1px solid;"></div>
+<br>
+<table class="MCTable">
+	<tr class="MCTableImpar"><td align="Left" class="MCTexto"><b>&nbsp;Lista de Menus não adicionados:<b></td></tr>
+</table>
+<div id="dataView2" style="width:100%;height:68px;border: #000000 1px solid;"></div>
+<br>
+<table class="MCTable">
+	<tr class="MCTableImpar"><td align="left" class="MCTexto"><b>&nbsp;Cadastrar novo Menu:<b></td></tr>
+</table>
+<div class="%HIDDEN_CAD%" style="width:100%;height:80px;border: #000000 1px solid;">
+<table class="MCTable">
+	<tr>
+		<td align="Left" class="MCTexto">Menu:</td>
+		<td align="Left"><input type="text" class="MCObject" name="aMenu" size="20" maxlength="20"></td>
+		<td align="Left" class="MCTexto">Descrição:</td>
+		<td align="Left"><input type="text" class="MCObject" name="aDescricao" size="26" maxlength="40"></td>
+		<td align="Left" class="MCTexto">Tipo:</td>
+		<td align="Left"><select class="MCObject" name="aCodTipo" onchange="habilitaLink();">%SEL_TIPO_MENU%</select></td>
+	</tr>
+	<tr>
+		<td align="Left" class="MCTexto">Ícone:</td>
+		<td align="Left"><input type="text" class="MCObject" name="aIcone" size="30" maxlength="100"></td>
+		<td align="Left" class="MCTexto">Link:</td>
+		<td align="Left"><input type="text" class="MCObject" name="aLink" onfocus="habilitaLink();" size="30" maxlength="100"></td>
+		<td align="Left"><input type="button" class="MCObject" value="Criar Menu" onclick="return(criarMenu());"></td>
+	</tr>
+</table>
+
+
+</div>
+</form>
+
+<script>
+	var view1 = new dhtmlXDataView({
+		container:"dataView1",
+		type:{
+			template:"<b>#menu#</b>",
+			template_loading:"Carregando ...",
+			width:120,
+			height:30,
+			margin:5,
+			padding:0
+		},
+		drag:true
+
+    });
+	view1.load('%BIN_URL%getXMLDVMenuIN.php?codMenuPai=%COD_MENU_PAI%&codTipoUsuario=%COD_TIPO_USUARIO%','xml');
+	
+	view1.attachEvent("onItemDblClick", function (id, ev, html){
+		var f		= document.getElementById('FMenuID');
+		var data	= view1.get(id);
+		f.codMenu.value	= data.codMenu;
+		f.submit();
+		return true;
+	});
+	
+	view1.attachEvent("onBeforeDrop",function(context){
+		var itemDe		= context.from.get(context.source[0]);
+		var itemPara	= context.to.get(context.target);
+		var f			= document.getElementById('FMenuID');
+		f.acao.value	= 'associar';
+
+		if (itemDe != null) {
+			f.codMenuDe.value = itemDe.codMenu;
+		}
+		
+		if (itemPara != null) {
+			f.codMenuPara.value = itemPara.codMenu;
+		}
+		
+		f.submit();
+        return true; //allow dnd
+    });
+	
+	var view2 = new dhtmlXDataView({
+		container:"dataView2",
+		type:{
+			template:"<b>#menu#</b>",
+			template_loading:"Carregando ...",
+			width:120,
+			height:30,
+			margin:5,
+			padding:0
+		},
+		drag:true
+
+    });
+	view2.load('%BIN_URL%getXMLDVMenuOUT.php?codMenuPai=%COD_MENU_PAI%&codTipoUsuario=%COD_TIPO_USUARIO%','xml');
+	view2.attachEvent("onBeforeDrop",function(context){
+		var itemDe		= context.from.get(context.source[0]);
+		var itemPara	= context.to.get(context.target);
+		var f			= document.getElementById('FMenuID');
+		f.acao.value	= 'desassociar';
+
+		if (itemDe != null) {
+			f.codMenuDe.value = itemDe.codMenu;
+		}
+		
+		if (itemPara != null) {
+			f.codMenuPara.value = itemPara.codMenu;
+		}
+		f.submit();
+        return true; //allow dnd
+    });
+    
+	view2.attachEvent("onItemDblClick", function (id, ev, html){
+		var data	= view2.get(id);
+		
+		if (confirm("Deseja realmente excluir esse menu ???  Ele será desassociado de todos os usuários, e todos os seus subMenus serão excluidos !!!")) {
+			var f	= document.getElementById('FMenuID');
+			f.codMenuDel.value	= data.codMenu;
+			f.acao.value		= 'excluir';
+			f.submit();
+			return true;
+		}
+	});
+
+</script>
+</body>
+</html>

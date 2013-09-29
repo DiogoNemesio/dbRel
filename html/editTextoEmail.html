@@ -1,0 +1,15 @@
+
+<div class="controls">
+	<div class="input-prepend">
+		<button class="btn btn-info">Título</button>
+		<input class="input-xlarge" id="tituloID" type="text" name="titulo" minlength="2" maxlength="60" required autocomplete="off">
+	</div>
+</div>
+<div class="control-group">
+	<div class="controls">
+		<textarea name="email" id="emailID" class="textarea" placeholder="" style="width: 600px; height: 200px" autocomplete="off"></textarea>
+	</div>
+</div>
+<script>
+$('.textarea').wysihtml5({locale: "pt-BR"});
+</script>

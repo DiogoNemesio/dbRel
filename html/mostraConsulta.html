@@ -1,0 +1,110 @@
+<div class="box-content">
+	<form class="form" id="zgFormID" action="#">
+	<input type="hidden" name="id" value="%ID%">
+	<input type="hidden" name="codPaciente" value="%COD_PACIENTE%">
+	<input type="hidden" name="codConsulta" value="%COD_CONSULTA%">
+    <fieldset>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span6">
+					<div class="control-group">
+		    			<label class="control-label" for="ordemID">Histórico da Consulta</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-h-sign"></i></span>
+		    					<textarea id="obsID" name="obs" class="input-xxlarge" rows="6" autocomplete="off">%OBS%</textarea>
+		    				</div>
+		    			</div>
+		    		</div>
+				    <div class="control-group">
+		    			<label class="control-label" for="descricaoID">Orientações</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-stethoscope"></i></span>
+		    					<textarea id="orientacoesID" name="orientacoes" class="input-xxlarge" rows="6" autocomplete="off">%ORIENTACOES%</textarea>
+		    				</div>
+		    			</div>
+		    		</div>
+		    	</div>
+		    	<div class="span2 centered" >
+					<div class="well" style="max-width: 160px; padding: 1px 0;">
+						<ul class="nav nav-list">
+							<li class="nav-header"><i class="icon-file-alt"></i>Questionários</li>
+							<li class="divider"></li>
+							<li id='questLiDefault' codPaciente='%COD_PACIENTE%' codConsulta='%COD_CONSULTA%'><a href="javascript:mostraQuestionario('%COD_PACIENTE%','%COD_CONSULTA%','F','');">Responder</a></li>
+							<li class="nav-header">Respondidos</li>
+							%QUESTIONARIOS%
+						</ul>
+					</div>
+		    	</div>
+		    	<div class="span2" style="text-align: left;">
+					<div class="well" style="max-width: 160px; padding: 1px 0;">
+						<ul class="nav nav-list">
+							<li class="nav-header"><i class="icon-paper-clip"></i>Documentos</li>
+							<li class="divider"></li>
+							<li id='docsLiDefault' codPaciente='%COD_PACIENTE%' codConsulta='%COD_CONSULTA%'><a href="javascript:uploadDoc('%COD_PACIENTE%','%COD_CONSULTA%','F');">Anexar</a></li>
+							<li class="nav-header">Exames Anexados</li>
+							%DOC_EXAMES%
+							<li class="nav-header">Fotos Anexadas</li>
+							%DOC_FOTOS%
+						</ul>
+					</div>
+		    	</div>
+		    	<div class="span2" style="text-align: left;">
+					<div class="well" style="max-width: 160px; padding: 1px 0;">
+						<ul class="nav nav-list">
+							<li class="nav-header"><i class="icon-cogs"></i>Opções</li>
+							<li class="divider"></li>
+							<li class="nav-header"><i class="icon-print"></i>Impressão</li>
+							<li id='optLi01' codPaciente='%COD_PACIENTE%' codConsulta='%COD_CONSULTA%'><a href="javascript:geraPdfConsulta('%COD_CONSULTA%');">Consulta</a></li>
+						</ul>
+					</div>
+		    	</div>
+		    	
+		    </div>
+		</div>
+		<div class="control-group" style="text-align: center;">
+			<div class="controls">
+				<button type="submit" class="btn btn-primary" id="submit">Salvar</button>
+				<button type="button" class="btn btn-warning" id="cancel" onclick="window.open('%URLVOLTAR%','_self')">Voltar</button>
+			</div>
+		</div>
+	</fieldset>
+	</form>
+</div>
+<div id="zgDivDownloadID" class="modal hide fade"></div>     
+<script>
+$('#zgFormID').submit(function() {
+	$.ajax({
+		type: 		"post",
+		url: 		"%DP%",
+		data:		$('#zgFormID').serialize(),
+	}).done(function( data, textStatus, jqXHR) {
+		mostraMensagem(data);
+		var vUrl;
+		var vStr1	= data.substr(1);
+		var vStr2	= $.base64.decode(vStr1);
+		var vTemp	= vStr2.split("|");
+		var vCodCon	= vTemp[1];
+		var vTempUrl = "mostraConsulta.php?codPaciente=%COD_PACIENTE%&codConsulta="+vCodCon+"&id=%ID%";
+		var vTempUrl1 = "editConsulta.php?codPaciente=%COD_PACIENTE%&id=%ID%";
+		
+		//$("#IFCentralID",parent.document).load(vTempUrl1);
+		$('#divEditConsultaID').load(vTempUrl);
+		
+	}).fail(function( jqXHR, textStatus, errorThrown) {
+		mostraMensagem('1||'+errorThrown);
+	});
+	return false; 
+});
+
+$(function() {
+	$('.datepicker').datepicker({
+		language: 'pt-BR'
+	});
+});
+
+$("input,textarea").jqBootstrapValidation({
+	preventSubmit: true
+});
+</script> 

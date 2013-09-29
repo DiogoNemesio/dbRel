@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+	%LOAD_HTML%
+</head>
+<body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+<div id="content">
+	%LOCALIZACAO%
+	<div class="box-header" data-original-title>
+    	<h4><i class="icon-edit"></i><span class="break"></span>&nbsp;Cadastro de Paciente</h4>
+	</div>
+	<hr>
+	<div class="box-content">
+	    <form class="form-horizontal" id="zgFormID" action="#" method="post">
+	    <input type="hidden" name="id" value="%ID%">
+	    <input type="hidden" name="codPaciente" value="%COD_PACIENTE%">
+	    <fieldset>
+		<div class="container-fluid">
+   			<div class="row-fluid">
+   				<div class="span4">
+				    <div class="control-group">
+		    			<label class="control-label" for="nomeID">Nome</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-book"></i></span>
+		    					<input class="input-large" id="nomeID" type="text" name="nome" minlength="4" maxlength="60" value="%NOME%" required autocomplete="off">
+		    				</div>
+		    			</div>
+		    		</div>
+				    <div class="control-group">
+		    			<label class="control-label" for="codSexoID">Sexo</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-th-list"></i></span>
+		    					<select id="codSexoID" name="codSexo" data-rel="chosen">
+								%SEXOS%
+								</select>
+		    				</div>
+		    			</div>
+		    		</div>
+				    <div class="control-group">
+		    			<label class="control-label" for="emailID">Email</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-envelope"></i></span>
+		    					<input class="input-large" id="emailID" type="email" name="email" maxlength="200" value="%EMAIL%" autocomplete="off">
+		    				</div>
+		    			</div>
+		    		</div>
+				    <div class="control-group">
+		    			<label class="control-label" for="telefoneID">Telefone</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-phone"></i></span>
+		    					<input class="input-large" id="telefoneID" type="number" name="telefone" maxlength="14" value="%TELEFONE%" autocomplete="off">
+		    					<!-- <input data-mask="(99)99999999*" class="input-large" id="telefoneID" type="text" name="telefone" maxlength="14" value="%TELEFONE%" autocomplete="off"> -->
+		    				</div>
+		    			</div>
+		    		</div>
+					<div class="control-group">
+		    			<label class="control-label" for="celularID">Celular</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-mobile-phone"></i></span>
+		    					<input class="input-large" id="celularID" type="number" name="celular" maxlength="14" value="%CELULAR%" autocomplete="off">
+		    				</div>
+		    			</div>
+		    		</div>
+		    	</div>
+		    	<div class="span4">
+					<div class="control-group">
+		    			<label class="control-label" for="dataNascID">Nascimento</label>
+		    			<div class="controls">
+		    				<div class="input-prepend date datepicker" data-date-format="dd/mm/yyyy">
+		    					<span class="add-on"><i class="icon-time"></i></span>
+		    					<input class="input-large" id="dataNascID" type="text" name="dataNasc" maxlength="10" value="%DATA_NASC%" dataBR autocomplete="off">
+		    				</div>
+		    			</div>
+		    		</div>
+					<div class="control-group">
+		    			<label class="control-label" for="profissaoID">Profissão</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-edit"></i></span>
+		    					<input class="input-large" id="profissaoID" type="text" name="profissao" maxlength="60" value="%PROFISSAO%" autocomplete="off">
+		    				</div>
+		    			</div>
+		    		</div>
+				    <div class="control-group">
+		    			<label class="control-label" for="cidadeID">UF / Cidade</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-home"></i></span>
+		    					<input type="text" name="cidade" id="cidadeID" data-provide="typeahead" value="%CIDADE%" autocomplete="off" required/>
+		    				</div>
+		    			</div>
+		    		</div>
+				    <div class="control-group">
+		    			<label class="control-label" for="enderecoID">Endereço</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-road"></i></span>
+		    					<input class="input-large" id="enderecoID" type="text" name="endereco" maxlength="100" value="%ENDERECO%" autocomplete="off">
+		    				</div>
+		    			</div>
+		    		</div>
+					<div class="control-group">
+		    			<label class="control-label" for="inputIcon">Bairro</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-home"></i></span>
+		    					<input class="input-large" id="bairroID" type="text" name="bairro" maxlength="60" value="%BAIRRO%" autocomplete="off">
+		    				</div>
+		    			</div>
+		    		</div>
+		    	</div>
+		    	<div class="span4">
+		    		<div class="fileupload fileupload-new" data-provides="fileupload">
+						<div class="fileupload-preview thumbnail" style="width: 202px; height: 152px;">
+							<img src="%BIN_URL%/mostraFotoPaciente.php?id=%ID%" class="img-rounded" style="width: 200px; height: 150px;">
+						</div>
+					</div>
+		    	</div>
+			</div>
+    	</div>
+		<div class="control-group">
+			<div class="controls">
+				<button type="submit" class="btn btn-primary" id="submit">Salvar</button>
+				<button type="button" class="btn btn-warning" id="cancel" onclick="window.open('%URLVOLTAR%','_self')">Voltar</button>
+			</div>
+		</div>
+	    </fieldset>
+	    </form>
+	</div>
+</div>
+<div id="zgDivMsgID" class="modal hide fade"></div>
+<script>
+var timer;
+$('#zgFormID').submit(function() {
+	$.ajax({
+		type: 		"post",
+		url: 		"%DP%",
+		data:		$('#zgFormID').serialize(),
+	}).done(function( data, textStatus, jqXHR) {
+		mostraMensagem(data);
+	}).fail(function( jqXHR, textStatus, errorThrown) {
+		mostraMensagem('1||'+errorThrown);
+	});
+	return false; 
+});
+
+$("#cidadeID").typeahead({
+	minLength: 	%PARAM_BS_TA_MINLENGTH%,
+	itens:		%PARAM_BS_TA_ITENS%,
+    source : function(query,process) {
+    	clearTimeout(timer);
+    	timer=setTimeout(function() {
+	    	$.ajax({
+	            type: "GET",
+	    	    url: "%DP_URL%/getCidades.php",
+	        	dataType: "json",
+				data: { q: query },
+	        	async: false,
+	        	success: function(data) {
+	        		return(process(data));
+	            }
+	    	})
+    	}, %PARAM_BS_TA_TIMEOUT%);
+    }
+});
+
+$(function() {
+	$('.datepicker').datepicker({
+		language: 'pt-BR'
+	});
+});
+
+$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation({preventSubmit: true}); } );
+/*$("input,textarea").jqBootstrapValidation({
+	preventSubmit: true
+});*/
+
+</script>
+
+</body>	
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+	%LOAD_HTML%
+</head>
+<body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+<div id="content">
+	%LOCALIZACAO%
+	<div class="box-header" data-original-title>
+    	<h4><i class="icon-edit"></i><span class="break"></span>&nbsp;Alteração de senha</h4>
+	</div>
+	<hr>
+	<div class="box-content">
+	    <form class="form-horizontal" id="zgFormID" action="#">
+	    <input type="hidden" name="id" value="%ID%">
+	    <fieldset>
+		    <div class="control-group">
+    			<label class="control-label" for="nomeID">Usuário</label>
+    			<div class="controls">
+    				<div class="input-prepend">
+    					<span class="add-on"><i class="icon-user"></i></span>
+    					<input class="input-large" type="text" name="usuario" value="%USUARIO%"  maxlength="20" autocomplete="off" disabled>
+    				</div>
+    			</div>
+    		</div>
+		    <div class="control-group">
+    			<label class="control-label" for="nomeID">Nova Senha</label>
+    			<div class="controls">
+    				<div class="input-prepend">
+    					<span class="add-on"><i class="icon-key"></i></span>
+    					<input class="input-large" type="password" name="senha" minlength="4" maxlength="20" required autocomplete="off">
+    				</div>
+    			</div>
+    		</div>
+		    <div class="control-group">
+    			<label class="control-label" for="nomeID">Confirmação de Senha</label>
+    			<div class="controls">
+    				<div class="input-prepend">
+    					<span class="add-on"><i class="icon-key"></i></span>
+    					<input class="input-large" type="password" name="confSenha" minlength="4" maxlength="20" data-validation-match-match="senha" required autocomplete="off">
+    				</div>
+    			</div>
+    		</div>
+    		 <div class="control-group">
+				<div class="controls">
+					<button type="submit" class="btn btn-primary" id="submit">Salvar</button>
+				</div>
+			</div>
+	    </fieldset>
+	    </form>
+	</div>
+</div>
+<div id="zgDivMsgID" class="modal hide fade"></div>
+<script>
+$('#zgFormID').submit(function() {
+	$.ajax({
+		type: 		"POST", 
+		url: 		"%DP%",
+		data:		$('#zgFormID').serialize(),		
+	}).done(function( data, textStatus, jqXHR) {
+		mostraMensagem(data);
+	}).fail(function( jqXHR, textStatus, errorThrown) {
+		mostraMensagem('1||'+errorThrown);
+	});
+	return false; 
+});
+
+
+$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+</script>
+
+</body>	
+</html>

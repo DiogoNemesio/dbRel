@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+	%LOAD_HTML%
+</head>
+<body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+<div id="content">
+	<div class="box-header" data-original-title>
+    	<h4><i class="icon-share"></i><span class="break"></span>&nbsp;%TITULO%</h4>
+	</div>
+	<hr>
+	<div class="alert">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<h4>Aviso!</h4>
+		<p>%MENSAGEM%</p>
+	</div>
+	<div class="box-content">
+	    <form class="form-horizontal" id="zgFormID" action="#">
+	    <input type="hidden" name="id" value="%ID%">
+    	<div class="control-group">
+			<div class="controls">
+				<button type="button" class="btn btn-info" id="cancel" onclick="window.open('%URL_FORM%','_top')">Entrar</button>
+			</div>
+		</div>
+		</form>
+    </div>
+</div>
+</body>	
+</html>

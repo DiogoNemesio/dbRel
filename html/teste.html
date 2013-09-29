@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+	%LOAD_HTML%
+</head>
+<body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+<div id="content">
+	<div class="box-content">
+	    <form class="form-horizontal" id="zgFormID" action="#">
+	    <input type="hidden" name="id" value="%ID%">
+	    <input type="hidden" name="codTemplo">
+	    <fieldset>
+		    <div class="control-group">
+    			<label class="control-label" for="cidadeID">UF - Cidade</label>
+    			<div class="controls">
+    				<div class="input-prepend">
+    					<span class="add-on"><i class="icon-home"></i></span>
+    					<input type="text" name="cidade" id="cidadeID" data-provide="typeahead" autocomplete="off"/>
+    				</div>
+    			</div>
+    		</div>
+	    </fieldset>
+	    </form>
+	    
+	    <a href='#' id='testid' data-toggle='tooltip' data-trigger='hover' data-animation='true' data-title='Apenas Testando'><button class='btn btn-small' type='button'><i class='icon-key'></i></button></a>
+	</div>
+</div>
+<script>
+
+$('[data-toggle="tooltip"]').tooltip();
+
+var timer;
+$("#cidadeID").typeahead({
+	minLength: 	3,
+	itens:		12,
+    source : function(query,process) {
+    	clearTimeout(timer);
+    	timer=setTimeout(function() {
+	    	$.ajax({
+	            type: "GET",
+	    	    url: "%DP_URL%/getCidades.php",
+	        	dataType: "json",
+				data: { q: query },
+	        	async: false,
+	        	success: function(data) {
+	        		return(process(data));
+	            }
+	    	})
+    	}, 800);
+    }
+});
+
+
+</script>
+
+</body>	
+</html>

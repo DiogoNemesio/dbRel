@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+	%LOAD_HTML%
+</head>
+<body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+<div id="content">
+	%LOCALIZACAO%
+	<div class="box-header" data-original-title>
+    	<h4><i class="icon-edit"></i><span class="break"></span>&nbsp;Perguntas</h4>
+	</div>
+	<hr>
+	<div class="box-content">
+	    <form class="form-horizontal" id="zgFormID" action="#">
+	    <input type="hidden" name="id" value="%ID%">
+	    <fieldset>
+		<div class="container-fluid">
+   			<div class="row-fluid">
+   				<div class="span6">
+			        <div class="control-group">
+		    			<label class="control-label" for="ordemID">Ordem</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-info-sign"></i></span>
+		    					<input id="ordemID" class="input-large" type="number" name="ordem" maxlength="2" min="1" max="99" value="%ORDEM%" required autocomplete="off">
+		    				</div>
+		    			</div>
+		    		</div>
+				    <div class="control-group">
+		    			<label class="control-label" for="descricaoID">Pergunta</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-question-sign"></i></span>
+		    					<input class="input-large" type="text" name="descricao" maxlength="100" value="%DESCRICAO%" required autocomplete="off">
+		    				</div>
+		    			</div>
+		    		</div>
+				    <div class="control-group">
+		    			<label class="control-label" for="codTipoID">Tipo</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-th-list"></i></span>
+		    					<select id="codTipoID" name="codTipo" data-rel="chosen">
+								%TIPOS%
+								</select>
+		    				</div>
+		    			</div>
+		    		</div>
+					<div class="control-group">
+		    			<label class="control-label" for="emailID">Status</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-th-list"></i></span>
+		    					<select id="codStatusID" name="codStatus" data-rel="chosen">
+								%STATUS%
+								</select>
+		    				</div>
+		    			</div>
+		    		</div>
+					<div class="control-group">
+		    			<label class="control-label" for="obrigatorioID">Obrigatório</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-th-list"></i></span>
+		    					<select id="obrigatorioID" name="codObrigatorio" data-rel="chosen">
+								%OBRIGATORIO%
+								</select>
+		    				</div>
+		    			</div>
+		    		</div>
+		    		<div class="control-group">
+						<div class="controls">
+						<button type="submit" class="btn btn-primary" id="submit">Salvar</button>
+						<button type="button" class="btn btn-warning" id="cancel" onclick="window.open('%URLVOLTAR%','_self')">Voltar</button>
+					</div>
+				</div>
+		    		
+		    	</div>
+		    	<div id="listaValoresID" class="span6 %HIDDEN%">
+		    		<div class="control-group">
+		    			<label class="control-label" for="ordemID"><b>Valores da lista</b></label>
+		    		</div>
+		    		<div class="control-group">
+		    			<div class="box-content">
+							<div class="input-append">
+								<input class="input-large" name="campo" id="campoID" type="text" autocomplete="off">
+								<button class="btn" id="addValID"><i class="icon-plus icon-white"></i></button>
+							</div>
+						</div>
+						%VALORES%
+		    		</div>
+		    	</div>
+		    </div>
+		</div>
+	    </fieldset>
+	    </form>
+	</div>
+</div>
+<div id="zgDivMsgID" class="modal hide fade"></div>
+<script>
+$('#zgFormID').submit(function() {
+	$.ajax({
+		type: 		"POST", 
+		url: 		"%DP%",
+		data:		$('#zgFormID').serialize(),		
+	}).done(function( data, textStatus, jqXHR) {
+		mostraMensagem(data);
+	}).fail(function( jqXHR, textStatus, errorThrown) {
+		mostraMensagem('1||'+errorThrown);
+	});
+	return false; 
+});
+
+$("input,textarea").jqBootstrapValidation({
+	preventSubmit: true
+});
+
+
+$('#codTipoID').change(function() {
+	if ($('#codTipoID').val() == "L") {
+		$('#listaValoresID').show();
+	}else{
+		$('#listaValoresID').hide();
+	}
+});
+
+var divIds = [];
+
+$('#addValID').click(function() {
+	if ($('#campoID').val() == '') {
+		alert('Digite algum valor !!!');
+	}else{
+		var v_num = divIds.length;
+		$('#listaValoresID').append('<div id="DivValor'+v_num+'" class="box-content"><div class="input-append"><input class="input-large" name="campos[]" type="text" value="'+$('#campoID').val()+'"><button class="btn" id="addValID'+v_num+'" onclick="removeDiv('+v_num+')"><i class="icon-minus icon-white"></i></button></a></div></div>');
+		divIds[v_num]	= v_num;
+		$('#campoID').val(null);
+	}
+	return false;
+})
+
+function removeDiv(divNum) {
+	$('#DivValor'+divNum).remove();
+}
+
+</script>
+</body>	
+</html>

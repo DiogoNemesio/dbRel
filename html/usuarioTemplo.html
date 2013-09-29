@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+	%LOAD_HTML%
+</head>
+<body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+<div id="content">
+	%LOCALIZACAO%
+	<div class="box-header" data-original-title>
+    	<h4><i class="icon-edit"></i><span class="break"></span>&nbsp;Acesso aos Templos</h4>
+	</div>
+	<hr>
+	<div class="box-content">
+	    <form class="form-horizontal" id="zgFormID" action="#">
+	    <input type="hidden" name="id" value="%ID%">
+	    <input type="hidden" name="codUsuario" value="%COD_USUARIO%">
+	    <fieldset>
+		<div class="container-fluid">
+   			<div class="row-fluid">
+   				<div class="span4">
+					<div class="control-group">
+						<label class="control-label" for="nomeID">Usuário</label>
+						<div class="controls">
+							<div class="input-prepend">
+								<span class="add-on"><i class="icon-user"></i></span>
+								<input class="input-large" type="text" name="usuario" value="%USUARIO%"  maxlength="20" autocomplete="off" disabled>
+							</div>
+						</div>
+					</div>
+					<div id='divAcessoTemploID' class="span4">
+						<div class="control-group" style="text-align:center">
+							<label class="control-label" for="inputIcon"><b>Templos com acesso</b></label>
+							<div class="controls">
+								<div class="input-prepend">
+								%TEMPLOS_CB%
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+    		 <div class="control-group">
+				<div class="controls">
+					<button type="submit" class="btn btn-primary" id="submit">Salvar</button>
+					<button type="button" class="btn btn-warning" id="cancel" onclick="window.open('%URLVOLTAR%','_self')">Voltar</button>
+				</div>
+			</div>
+	    </fieldset>
+	    </form>
+	</div>
+</div>
+<div id="zgDivMsgID" class="modal hide fade"></div>
+<script>
+$('#zgFormID').submit(function() {
+	$.ajax({
+		type: 		"POST", 
+		url: 		"%DP%",
+		data:		$('#zgFormID').serialize(),		
+	}).done(function( data, textStatus, jqXHR) {
+		mostraMensagem(data);
+	}).fail(function( jqXHR, textStatus, errorThrown) {
+		mostraMensagem('1||'+errorThrown);
+	});
+	return false; 
+});
+
+
+$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+</script>
+
+</body>	
+</html>

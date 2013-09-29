@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+	%LOAD_HTML%
+</head>
+<body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+<div id="content">
+	%LOCALIZACAO%
+	<div class="box-header" data-original-title>
+    	<h4><i class="icon-edit"></i><span class="break"></span>%EXCTITLE%</h4>
+	</div>
+	<hr>
+	<div class="alert">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<h4>Aviso!</h4>
+		<p>%MENSAGEM% <strong>"%NOME%"</strong> ??</p>
+	</div>
+	<div class="box-content">
+	    <form class="form-horizontal" id="zgFormID" action="#">
+	    <input type="hidden" name="id" value="%ID%">
+    	<div class="control-group">
+			<div class="controls">
+				<button type="submit" class="btn btn-primary" id="submit">Excluir</button>
+				<button type="button" class="btn btn-warning" id="cancel" onclick="window.open('%URLVOLTAR%','_self')">Voltar</button>
+			</div>
+		</div>
+		</form>
+    </div>
+</div>
+<div id="zgDivMsgID" class="modal hide fade"></div>
+<script>
+$('#zgFormID').submit(function() {
+	$.ajax({
+		type: 		"POST",
+		url: 		"%DP%",
+		data:		$('#zgFormID').serialize(),		
+	}).done(function( data, textStatus, jqXHR) {
+		mostraMensagem(data);
+	}).fail(function( jqXHR, textStatus, errorThrown) {
+		mostraMensagem('1||'+errorThrown);
+	});
+	return false;
+});
+</script>
+</body>	
+</html>

@@ -1,0 +1,297 @@
+
+
+====================================
+Log started, 28/04/2012 08:04:16
+====================================
+
+SELECT  * FROM events_shared WHERE  event_type=1 AND userId = 2
+
+!!!Uncaught Exception
+Code: 0
+Message: MySQL operation failed
+No database selected
+
+
+
+====================================
+Log started, 28/04/2012 08:04:16
+====================================
+
+SELECT  * FROM events_shared WHERE  event_type=1 AND userId = 1
+
+!!!Uncaught Exception
+Code: 0
+Message: MySQL operation failed
+No database selected
+
+
+
+====================================
+Log started, 28/04/2012 08:04:39
+====================================
+
+SELECT  * FROM events_shared WHERE  userId = 0
+
+!!!Uncaught Exception
+Code: 0
+Message: MySQL operation failed
+No database selected
+
+
+
+====================================
+Log started, 28/04/2012 08:04:43
+====================================
+
+DataProcessor object initialized
+1335612339131_start_date => 2009-06-11 06:00
+1335612339131_end_date => 2009-06-11 06:05
+1335612339131_text => New event
+1335612339131_id => 1335612339131
+1335612339131_event_type => 0
+1335612339131_!nativeeditor_status => inserted
+ids => 1335612339131
+
+Row data [1335612339131]
+start_date => 2009-06-11 06:00
+end_date => 2009-06-11 06:05
+text => New event
+event_id => 1335612339131
+event_type => 0
+!nativeeditor_status => inserted
+
+change value of: userId as: 2
+
+INSERT INTO events_shared(start_date,end_date,text,event_type,userId) VALUES ('2009-06-11 06:00','2009-06-11 06:05','New event','0','2')
+
+Edit operation finished
+0 => action:error; sid:1335612339131; tid:1335612339131;
+
+Done in 0.00058698654174805s
+
+
+
+====================================
+Log started, 28/04/2012 08:04:47
+====================================
+
+DataProcessor object initialized
+1335612339135_start_date => 2009-06-04 06:00
+1335612339135_end_date => 2009-06-04 06:05
+1335612339135_text => New event
+1335612339135_id => 1335612339135
+1335612339135_event_type => 1
+1335612339135_!nativeeditor_status => inserted
+ids => 1335612339135
+
+Row data [1335612339135]
+start_date => 2009-06-04 06:00
+end_date => 2009-06-04 06:05
+text => New event
+event_id => 1335612339135
+event_type => 1
+!nativeeditor_status => inserted
+
+change value of: userId as: 2
+
+INSERT INTO events_shared(start_date,end_date,text,event_type,userId) VALUES ('2009-06-04 06:00','2009-06-04 06:05','New event','1','2')
+
+Edit operation finished
+0 => action:error; sid:1335612339135; tid:1335612339135;
+
+Done in 0.00054192543029785s
+
+
+
+====================================
+Log started, 28/04/2012 08:04:54
+====================================
+
+DataProcessor object initialized
+1335612339136_start_date => 2009-06-03 06:00
+1335612339136_end_date => 2009-06-03 06:05
+1335612339136_text => New event
+1335612339136_id => 1335612339136
+1335612339136_event_type => 1
+1335612339136_!nativeeditor_status => inserted
+ids => 1335612339136
+
+Row data [1335612339136]
+start_date => 2009-06-03 06:00
+end_date => 2009-06-03 06:05
+text => New event
+event_id => 1335612339136
+event_type => 1
+!nativeeditor_status => inserted
+
+change value of: userId as: 2
+
+INSERT INTO events_shared(start_date,end_date,text,event_type,userId) VALUES ('2009-06-03 06:00','2009-06-03 06:05','New event','1','2')
+
+Edit operation finished
+0 => action:error; sid:1335612339136; tid:1335612339136;
+
+Done in 0.00055718421936035s
+
+
+
+====================================
+Log started, 28/04/2012 08:04:59
+====================================
+
+SELECT  * FROM events_shared WHERE  userId = 1
+
+!!!Uncaught Exception
+Code: 0
+Message: MySQL operation failed
+No database selected
+
+
+
+====================================
+Log started, 28/04/2012 08:04:59
+====================================
+
+SELECT  * FROM events_shared WHERE  event_type=1 AND userId = 2
+
+!!!Uncaught Exception
+Code: 0
+Message: MySQL operation failed
+No database selected
+
+
+
+====================================
+Log started, 28/04/2012 08:04:05
+====================================
+
+DataProcessor object initialized
+1335612359905_start_date => 2009-06-04 06:00
+1335612359905_end_date => 2009-06-04 06:05
+1335612359905_text => New event
+1335612359905_id => 1335612359905
+1335612359905_userId => 1
+1335612359905_event_type => 0
+1335612359905_!nativeeditor_status => inserted
+ids => 1335612359905
+
+Row data [1335612359905]
+start_date => 2009-06-04 06:00
+end_date => 2009-06-04 06:05
+text => New event
+event_id => 1335612359905
+userId => 1
+event_type => 0
+!nativeeditor_status => inserted
+
+change value of: userId as: 1
+
+INSERT INTO events_shared(start_date,end_date,text,event_type,userId) VALUES ('2009-06-04 06:00','2009-06-04 06:05','New event','0','1')
+
+Edit operation finished
+0 => action:error; sid:1335612359905; tid:1335612359905;
+
+Done in 0.00056910514831543s
+
+
+
+====================================
+Log started, 28/04/2012 08:04:08
+====================================
+
+DataProcessor object initialized
+1335612359908_start_date => 2009-06-18 06:00
+1335612359908_end_date => 2009-06-18 06:05
+1335612359908_text => New event
+1335612359908_id => 1335612359908
+1335612359908_userId => 1
+1335612359908_event_type => 0
+1335612359908_!nativeeditor_status => inserted
+ids => 1335612359908
+
+Row data [1335612359908]
+start_date => 2009-06-18 06:00
+end_date => 2009-06-18 06:05
+text => New event
+event_id => 1335612359908
+userId => 1
+event_type => 0
+!nativeeditor_status => inserted
+
+change value of: userId as: 1
+
+INSERT INTO events_shared(start_date,end_date,text,event_type,userId) VALUES ('2009-06-18 06:00','2009-06-18 06:05','New event','0','1')
+
+Edit operation finished
+0 => action:error; sid:1335612359908; tid:1335612359908;
+
+Done in 0.00081300735473633s
+
+
+
+====================================
+Log started, 28/04/2012 08:04:15
+====================================
+
+DataProcessor object initialized
+1335612359909_start_date => 2009-06-06 06:00
+1335612359909_end_date => 2009-06-06 06:05
+1335612359909_text => New event
+1335612359909_id => 1335612359909
+1335612359909_userId => 1
+1335612359909_event_type => 0
+1335612359909_!nativeeditor_status => inserted
+ids => 1335612359909
+
+Row data [1335612359909]
+start_date => 2009-06-06 06:00
+end_date => 2009-06-06 06:05
+text => New event
+event_id => 1335612359909
+userId => 1
+event_type => 0
+!nativeeditor_status => inserted
+
+change value of: userId as: 1
+
+INSERT INTO events_shared(start_date,end_date,text,event_type,userId) VALUES ('2009-06-06 06:00','2009-06-06 06:05','New event','0','1')
+
+Edit operation finished
+0 => action:error; sid:1335612359909; tid:1335612359909;
+
+Done in 0.00056791305541992s
+
+
+
+====================================
+Log started, 28/04/2012 08:04:24
+====================================
+
+DataProcessor object initialized
+1335612359909_start_date => 2009-06-06 06:00
+1335612359909_end_date => 2009-06-06 06:05
+1335612359909_text => New event
+1335612359909_id => 1335612359909
+1335612359909_userId => 1
+1335612359909_event_type => 0
+1335612359909_!nativeeditor_status => inserted
+ids => 1335612359909
+
+Row data [1335612359909]
+start_date => 2009-06-06 06:00
+end_date => 2009-06-06 06:05
+text => New event
+event_id => 1335612359909
+userId => 1
+event_type => 0
+!nativeeditor_status => inserted
+
+change value of: userId as: 1
+
+INSERT INTO events_shared(start_date,end_date,text,event_type,userId) VALUES ('2009-06-06 06:00','2009-06-06 06:05','New event','0','1')
+
+Edit operation finished
+0 => action:error; sid:1335612359909; tid:1335612359909;
+
+Done in 0.00055694580078125s
+

@@ -1,0 +1,124 @@
+/*==================================================================
+CLASSE clAreaRestrita{}
+==================================================================*/
+var lfgportal = lfgportal || {};
+lfgportal.app = lfgportal.app || {};
+
+;(function(scope, $) {
+	scope.clAreaRestrita = {
+		form : $('#frmLoginAreaRestrita'),
+		area : $('select[name="codTemplo"]', $('#form-ar')),
+		fnInit: function(){
+			this.clMenuAr.fnInit();
+		},
+		/*----------------------------------------------------------------------------------------------------
+		<SUMARY>Classe que controla a Área Restrita</SUMARY>
+		----------------------------------------------------------------------------------------------------*/
+        clMenuAr: {
+			form : $('#form-ar'),
+			listaTemplo : '',
+			/*----------------------------------------------------------------------------------------------------
+			<SUMARY>Função construtora da Classe clMenuAr</SUMARY>	
+			----------------------------------------------------------------------------------------------------*/
+            fnInit: function(){
+                this.fnInitMenuAr();
+                this.fnValidar();
+            },
+			/*----------------------------------------------------------------------------------------------------
+			<SUMARY>Função que: 1. Cliques para Mostra/Esconde Área Restrira; 2. Submit Formulário</SUMARY>	
+			----------------------------------------------------------------------------------------------------*/
+            fnInitMenuAr: function(){
+				scope.clAreaRestrita.clMenuAr.listaTemplo = $('select[name="codTemplo"]', scope.clAreaRestrita.clMenuAr.form).html();
+                $('#call-ar').click(function() {
+                    $(this).parent().animate({ 'top' : '-100px'},
+						function(){ $('#sub-ar').slideToggle(); }
+					);
+                });
+                $('#close-ar').click(function() {
+					 $('#sub-ar').slideToggle(300,
+					 	function(){ $('#call-ar').parent().animate({ 'top' : '0'});	}
+					 );
+                });
+			$('#form-ar-entrar').click(function() {
+                		var validator = scope.clAreaRestrita.clMenuAr.form;
+				validator.validate({
+					debug: true,
+					rules: {
+						"usuario": {
+							required: true
+						},
+						"senha": {
+							required: true
+						}
+					},
+					errorPlacement: function(error,element) {                        
+						return false;
+					},
+					submitHandler: function(form) {
+						return true;
+					}
+				});
+			scope.clAreaRestrita.clMenuAr.form.submit()
+            },
+        },
+		/*----------------------------------------------------------------------------------------------------
+		<SUMARY>Classe que monta o formulário de POST de acordo com a área</SUMARY>
+		----------------------------------------------------------------------------------------------------*/
+		clPost : {
+			/*----------------------------------------------------------------------------------------------------
+			<SUMARY>Função construtora da classe clPost()</SUMARY>
+			----------------------------------------------------------------------------------------------------*/
+			fnInitPost: function(){
+				var area = scope.clAreaRestrita.area.find('option:selected').val();
+				scope.clAreaRestrita.clPost.fnPrepararForm(area);
+			},
+			/*----------------------------------------------------------------------------------------------------
+			<SUMARY>Função que monta o Form</SUMARY>
+			----------------------------------------------------------------------------------------------------*/
+			fnPrepararForm : function(prmArea){
+				var areas = scope.clAreaRestrita.clPost.fnGetData(prmArea);
+				var campos = '<input id="' + areas.label_login + '" name="' + areas.label_login + '" type="hidden" value="' + $('#user').val() + '">'
+						   + '<input id="' + areas.label_senha + '" name="' + areas.label_senha + '" type="hidden" value="' + $('#pwd').val() + '">' 
+						   + '<input id="URLUsers" name="URLUsers" type="hidden" value="' + areas.urlusers + '">';
+				scope.clAreaRestrita.form.attr({ 'action' : areas.action }).html(campos).submit();								
+			},
+			/*----------------------------------------------------------------------------------------------------
+			<SUMARY>Função que retorna o Array com os campos do Form</SUMARY>
+			----------------------------------------------------------------------------------------------------*/
+			fnGetData : function(prmArea){
+				var areas = [];
+				
+				areas.push({
+					concurso : {
+						action : 'http://cygnus.lfg.com.br', 
+						label_login : 'UsuarioSenha', 
+						label_senha : 'UsuarioSenha',
+						urlusers : '',
+						lnk_forgotpwd : 'http://cygnus.lfg.com.br/Public/ProblemaAcesso.aspx'
+					},
+					oab : {
+						action : 'http://cygnus.lfg.com.br/?ambiente=lfg',
+						label_login : 'UsuarioNome', 
+						label_senha : 'UsuarioSenha',
+						urlusers : '',
+						lnk_forgotpwd : 'http://cygnus.lfg.com.br/Public/ProblemaAcesso.aspx'
+					},
+					pos_graduacao : {
+						action : 'http://www.sga.lfg.com.br/autenticacao.aspx', 
+						label_login : 'loginname', 
+						label_senha : 'passwd',
+						urlusers : 'http://ww3.lfg.com.br/seavi/lfgusers.php',
+						lnk_forgotpwd : 'http://ww3.lfg.com.br/seavi/lfgusers.php'
+					}               
+					
+				});
+				
+				return areas[0][prmArea];
+			}
+		}
+	};
+
+	$(function(){
+		scope.clAreaRestrita.fnInit();
+	});
+})(lfgportal.app, jQuery);

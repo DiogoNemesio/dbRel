@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<!-- http://www.drfritzamorsupremo.com.br/site/ -->
+<head>
+	<title>Amor Divino</title>
+	%LOAD_HTML%
+</head>
+<body>
+	<div class="content">
+		<div class="header-tab-menu">
+			<a id="call-ar" href="#" class="restricted-area">Acesso a área restrita</a>
+		</div>
+		<div id="sub-ar" class="sub-ar">                            
+		<form id="frmLoginAreaRestrita" style="display:none;" action="%BIN_URL%/main.php" method="post">
+			<input type="hidden" id="userID" name="usuario">
+			<input type="hidden" id="passID" name="senha">
+			<input type="hidden" id="temploID" name="templo">
+		</form>
+			<form class="inline-form" id="form-ar">
+			<div class="alinha-login first">
+				<label class="control-label" for="estado">Templo:</label>
+				<select id='templo' name="templo" class="select-list-tipo default-dropdown" style="width:100%;">
+					%TEMPLOS%
+				</select>
+			</div>
+			<div class="alinha-login">
+				<label class="control-label" for="user">Login:</label>
+				<div class="input-prepend">
+				<span class="add-on"><i class="icon-user"></i></span>
+				<input class="input-small" id="user" name="usuario" type="text">
+			</div>
+		</div>     
+		<div class="alinha-login">
+			<label class="control-label" for="pwd">Senha: <!-- <span class="forgot-pwd"><a href="javascript:void(0)"> Esqueci minha senha</a></span> --></label>
+			<div class="input-prepend">
+				<span class="add-on"><i class="icon-lock"></i></span>
+				<input class="input-small" id="pwd" name="senha" type="password">
+			</div>
+		</div>
+		</form>
+		<div class="close-ar clearfix">
+			<ul class="sub-ar-footer">
+				<li class="restrita">
+					<label>Área restrita</label>
+				</li>
+				<li>
+						<!-- espaço para futuras informações -->                                
+				</li>
+				<li>&nbsp;</li>                                                                        
+				<li>
+					<a id="form-ar-entrar" href="javascript:void(0);" class="bt-entrar">Entrar<span class="up-arrow">&nbsp;</span></a>
+				</li>
+				<li>
+					<a id="close-ar" class="bt-fechar" href="javascript:void(0)">x</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+           
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h4>Pacientes encontrados</h4>
+</div>
+<div class="modal-body" id="divMostraPacID">
+%PACIENTES%
+</div>
+<div class="modal-footer">
+	<div class="control-group">
+		<div class="controls">
+			<button type="button" class="btn btn-primary" id="submitModalPac">Avançar</button>
+			<button type="button" class="btn btn-inverse" data-dismiss="modal" aria-hidden="true" id='btFecharID'>Fechar</button>
+		</div>
+	</div>
+</div>
+<script>
+var vNome		= "%NOME%";
+var vCodCidade	= "%COD_CIDADE%";
+var vPasso		= 1;
+
+
+$('#submitModalPac').click(function() {
+	if (vPasso == 1) {
+		var vTempUrl = "%BIN_URL%/editTextoEmail.php";
+		$('#divMostraPacID').load(vTempUrl);
+		$(this).html("Enviar Email");
+		vPasso  = 2;
+	}else if (vPasso == 2) {
+		var vEmail	= $("#emailID").val();
+		var vTitulo	= $("#tituloID").val();
+		//var vTempUrl = "%BIN_URL%/sendMail.php?email="+vEmail+"&nome="+vNome+"&codCidade="+vCodCidade+"&titulo="+vTitulo;
+		var vTempUrl = "%BIN_URL%/sendMail.php";
+		$.ajax({
+			type: 		"post",
+			url: 		vTempUrl,
+			data: 		{titulo : $("#tituloID").val(),email : $("#emailID").val(), nome: vNome, codCidade: vCodCidade},
+			success: 	alert('Email cadastrado na fila de envio !!!')
+		});
+		
+		$('#btFecharID').click();
+	}
+});
+
+$('#zgFormID').submit(function() {
+	$.ajax({
+		type: 		"post",
+		url: 		"%DP%",
+		data:		$('#zgFormID').serialize(),
+	}).done(function( data, textStatus, jqXHR) {
+		mostraMensagem(data);
+		var vUrl;
+		var vStr1	= data.substr(1);
+		var vStr2	= $.base64.decode(vStr1);
+		var vTemp	= vStr2.split("|");
+		var vCodCon	= vTemp[1];
+		var vTempUrl = "mostraConsulta.php?codPaciente=%COD_PACIENTE%&codConsulta="+vCodCon+"&id=%ID%";
+		var vTempUrl1 = "editConsulta.php?codPaciente=%COD_PACIENTE%&id=%ID%";
+		
+		$("#IFCentralID",parent.document).load(vTempUrl1);
+		$('#divEditConsultaID').load(vTempUrl);
+		
+	}).fail(function( jqXHR, textStatus, errorThrown) {
+		mostraMensagem('1||'+errorThrown);
+	});
+	return false; 
+});
+
+</script>

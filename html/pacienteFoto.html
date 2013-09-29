@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+	%LOAD_HTML%
+</head>
+<body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+<div id="content">
+	%LOCALIZACAO%
+	<div class="box-header" data-original-title>
+    	<h4><i class="icon-edit"></i><span class="break"></span>&nbsp;Foto do Paciente</h4>
+	</div>
+	<hr>
+	<div class="box-content">
+	    <form action="%FORM_URL%" enctype="multipart/form-data" method="post">
+	    <input type="hidden" name="id" value="%ID%">
+	    <input type="hidden" name="codPaciente" value="%COD_PACIENTE%">
+	    <fieldset>
+		<div class="container-fluid">
+   			<div class="row-fluid">
+		    	<div class="span4">
+		    		<div class="fileupload fileupload-new" data-provides="fileupload">
+						<div class="fileupload-preview thumbnail" style="width: 202px; height: 152px;">
+							<img src="%BIN_URL%/mostraFotoPaciente.php?id=%ID%" class="img-rounded" style="width: 200px; height: 150px;">
+						</div>
+					</div>
+		    	</div>
+		    	<div class="span4">
+		    		<div class="fileupload fileupload-new" data-provides="fileupload">
+						<div class="fileupload-preview thumbnail" style="width: 200px; height: 150px;"></div>
+						<div>
+							<span class="btn btn-file"><span class="fileupload-new">Mudar a foto</span><span class="fileupload-exists">Mudar</span><input type="file" name="foto"></span>
+							<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
+						</div>
+					</div>
+		    	</div>
+			</div>
+    	</div>
+		<div class="control-group">
+			<div class="controls">
+				<button type="submit" class="btn btn-primary" id="submit">Salvar</button>
+				<button type="button" class="btn btn-warning" id="cancel" onclick="window.open('%URLVOLTAR%','_self')">Voltar</button>
+			</div>
+		</div>
+	    </fieldset>
+	    </form>
+	</div>
+</div>
+</body>	
+</html>

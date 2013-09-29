@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+	%LOAD_HTML%
+</head>
+<body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+<div id="content">
+	%LOCALIZACAO%
+	<div class="box-header" data-original-title>
+    	<h4><i class="icon-edit"></i><span class="break"></span>&nbsp;Cadastro de Usuário</h4>
+	</div>
+	<hr>
+	<div class="box-content">
+	    <form class="form-horizontal" id="zgFormID" action="#">
+	    <input type="hidden" name="id" value="%ID%">
+	    <input type="hidden" name="codUsuario" value="%COD_USUARIO%">
+	    <fieldset>
+		<div class="container-fluid">
+   			<div class="row-fluid">
+   				<div class="span4">
+				    <div class="control-group">
+		    			<label class="control-label" for="usuarioID">Usuário</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-user"></i></span>
+		    					<input class="input-large" id="usuarioID" type="text" name="usuario" minlength="4" maxlength="14" value="%USUARIO%" required autocomplete="off">
+		    				</div>
+		    			</div>
+		    		</div>
+				    <div class="control-group">
+		    			<label class="control-label" for="nomeID">Nome</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-book"></i></span>
+		    					<input class="input-large" id="nomeID" type="text" name="nome" minlength="4" maxlength="60" value="%NOME%" required autocomplete="off">
+		    				</div>
+		    			</div>
+		    		</div>
+				    <div class="control-group">
+		    			<label class="control-label" for="senhaID">Senha</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-key"></i></span>
+		    					<input class="input-large" id="senhaID" type="password" name="senha" minlength="4" maxlength="20"  autocomplete="off">
+		    				</div>
+		    			</div>
+		    		</div>
+				    <div class="control-group">
+		    			<label class="control-label" for="codTipoID">Tipo</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-th-list"></i></span>
+		    					<select id="codTipoID" name="codTipo" data-rel="chosen">
+								%TIPOS%
+								</select>
+		    				</div>
+		    			</div>
+		    		</div>
+		    	</div>
+		    	<div class="span4">
+				    <div class="control-group">
+		    			<label class="control-label" for="emailID">Email</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-envelope"></i></span>
+		    					<input class="input-large" id="emailID" type="email" name="email" maxlength="200" value="%EMAIL%" autocomplete="off">
+		    				</div>
+		    			</div>
+		    		</div>
+				    <div class="control-group">
+		    			<label class="control-label" for="telefoneID">Telefone</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-phone"></i></span>
+		    					<input class="input-large" id="telefoneID" type="number" name="telefone" maxlength="11" value="%TELEFONE%" autocomplete="off">
+		    				</div>
+		    			</div>
+		    		</div>
+					<div class="control-group">
+		    			<label class="control-label" for="celularID">Celular</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-mobile-phone"></i></span>
+		    					<input class="input-large" id="celularID" type="number" name="celular" maxlength="11" value="%CELULAR%" autocomplete="off">
+		    				</div>
+		    			</div>
+		    		</div>
+					<div class="control-group">
+		    			<label class="control-label" for="emailID">Status</label>
+		    			<div class="controls">
+		    				<div class="input-prepend">
+		    					<span class="add-on"><i class="icon-th-list"></i></span>
+		    					<select id="codStatusID" name="codStatus" data-rel="chosen">
+								%STATUS%
+								</select>
+		    				</div>
+		    			</div>
+		    		</div>
+    			</div>
+			</div>
+    	</div>
+		<div class="control-group">
+			<div class="controls">
+				<button type="submit" class="btn btn-primary" id="submit">Salvar</button>
+				<button type="button" class="btn btn-warning" id="cancel" onclick="window.open('%URLVOLTAR%','_self')">Voltar</button>
+			</div>
+		</div>
+	    </fieldset>
+	    </form>
+	</div>
+</div>
+<div id="zgDivMsgID" class="modal hide fade"></div>
+<script>
+var timer;
+$('#zgFormID').submit(function() {
+	$.ajax({
+		type: 		"POST", 
+		url: 		"%DP%",
+		data:		$('#zgFormID').serialize(),		
+	}).done(function( data, textStatus, jqXHR) {
+		mostraMensagem(data);
+	}).fail(function( jqXHR, textStatus, errorThrown) {
+		mostraMensagem('1||'+errorThrown);
+	});
+	return false; 
+});
+
+
+$("input,textarea").jqBootstrapValidation({
+	preventSubmit: true
+});
+
+//$(function () { $("input").not("[type=submit]").jqBootstrapValidation(); } );
+</script>
+
+</body>	
+</html>
